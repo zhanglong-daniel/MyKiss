@@ -1,0 +1,46 @@
+/*
+ * Copyright (C) 2017 Baidu, Inc. All Rights Reserved.
+ */
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "25.0.0"
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            ndk {
+                abiFilters = ["armeabi"]
+            }
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    // OkHttp3
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+//    // fresco
+//    compile 'com.facebook.fresco:imagepipeline-okhttp3:0.12.0'
+//    compile('com.facebook.fresco:fresco:0.12.0') {
+//        exclude group: 'com.nineoldandroids'
+//    }
+}
+
